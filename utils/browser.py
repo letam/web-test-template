@@ -93,6 +93,21 @@ def Browser(driver_name: str = "firefox", *args, **kwargs):
         elif driver_name == "chrome" and "chrome" in DRIVERS:
             kwargs["executable_path"] = DRIVERS["chrome"]
 
+    options = None
+    headless = kwargs.pop("headless", False)
+    if headless:
+        if driver_name == "firefox":
+            from selenium.webdriver.firefox.options import Options
+        elif driver_name == "chrome":
+            from selenium.webdriver.chrome.options import Options
+        else:
+            Options = None
+        if Options:
+            options = Options()
+            options.add_argument("-headless")
+    if options:
+        kwargs["options"] = options
+
     Driver = getattr(webdriver, driver_name.capitalize())
 
     class BrowserClass(BrowserFunctionsMixin, Driver):

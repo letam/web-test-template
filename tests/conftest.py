@@ -10,6 +10,12 @@ def browser():
 
 
 @fixture
+def headless_browser():
+    with Browser(headless=True) as browser:
+        yield browser
+
+
+@fixture
 def chrome_browser():
     with Browser("chrome") as browser:
         yield browser

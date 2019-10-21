@@ -4,6 +4,12 @@ def test_visit_google_com_returns_page_with_Google_in_title(browser):
     assert "Google" in b.title
 
 
+def test_headless_visit_google_com_returns_page_with_Google_in_title(headless_browser):
+    b = headless_browser
+    b.visit("https://www.google.com/")
+    assert "Google" in b.title
+
+
 def test_chrome_fill_github_in_google_search_box_returns_github_website(chrome_browser):
     b = chrome_browser
     b.visit("https://www.google.com/")
