@@ -35,8 +35,8 @@ A starter project for creating automated tests for websites and web applications
 4. Create and activate python virtual environment for the project
 
    ```
-   python3 -m venv venv
-   source venv/bin/activate
+   python3 -m venv .venv
+   source .venv/bin/activate
    ```
 
 5. Install project requirements
@@ -68,7 +68,7 @@ A starter project for creating automated tests for websites and web applications
 **Remember to activate project's virtual environment in the project directory first:**
 
 ```
-source venv/bin/activate
+source .venv/bin/activate
 ```
 
 **To list all test command options, execute:**
