@@ -20,13 +20,13 @@ A starter project for creating automated tests for websites and web applications
 
 ## Tech Stack
 
-- [Python 3.8+](https://www.python.org)
+- [Python 3.11+](https://www.python.org)
 - [Selenium](https://github.com/SeleniumHQ/selenium/)
 - [Pytest](https://docs.pytest.org/en/latest/)
 
 ## Setup
 
-1. Install Python 3.8+ from [python.org](https://www.python.org)
+1. Install Python 3.11+ from [python.org](https://www.python.org)
 
 2. Download and unzip the project from [https://github.com/letam/web-test-template/archive/master.zip](https://github.com/letam/web-test-template/archive/master.zip)
 
