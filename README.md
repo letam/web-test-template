@@ -8,6 +8,7 @@ A starter project for creating automated tests for websites and web applications
 
 - [Tech Stack](#tech-stack)
 - [Setup](#setup)
+- [Executing Tests](#executing-tests)
 - [Test Command Options](#test-command-options)
   - [Usage](#usage)
   - [Options](#options)
@@ -60,10 +61,19 @@ A starter project for creating automated tests for websites and web applications
    cp .env.sample .env
    ```
 
-8. Run tests located in the the `./tests` directory located in the root
-   ```
-   pytest tests
-   ```
+## Executing Tests
+
+To run tests using firefox webdriver, exiting upon first failed test:
+
+```
+pytest -x -k 'firefox'
+```
+
+To run all tests located in the the `./tests` directory located in the root:
+
+```
+pytest tests
+```
 
 ## Test Command Options
 
