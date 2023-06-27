@@ -5,6 +5,7 @@ from selenium import webdriver
 from selenium.common.exceptions import (InvalidSelectorException,
                                         NoSuchElementException,
                                         WebDriverException)
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -49,11 +50,11 @@ class BrowserFunctionsMixin:
         )
 
     def wait_for_element_by_xpath(self, query: str, timeout=WAIT_TIME):
-        return self.wait_for(lambda: self.driver.find_element_by_xpath(query), timeout)
+        return self.wait_for(lambda: self.driver.find_element(By.XPATH, query), timeout)
 
     def xpath(self, expr: str):
         try:
-            return self.driver.find_element_by_xpath(expr)
+            return self.driver.find_element(By.XPATH, expr)
         except NoSuchElementException:
             return None
 
@@ -78,7 +79,7 @@ class BrowserFunctionsMixin:
         return self.find_by_text(text, timeout, 'a')
 
     def find_by_name(self, name: str, timeout=0):
-        return self.wait_for(lambda: self.driver.find_element_by_name(name), timeout)
+        return self.wait_for(lambda: self.driver.find_element(By.NAME, name), timeout)
 
     def fill(self, field_name: str, value: str):
         self.find_by_name(field_name).send_keys(value)
@@ -127,9 +128,13 @@ def Browser(driver_name: str = "firefox", *args, **kwargs):
 
     if "executable_path" not in kwargs:
         if driver_name == "firefox" and "firefox" in DRIVERS:
-            kwargs["executable_path"] = DRIVERS["firefox"]
+            from selenium.webdriver.firefox.service import Service
+
+            kwargs["service"] = Service(executable_path=DRIVERS["firefox"])
         elif driver_name == "chrome" and "chrome" in DRIVERS:
-            kwargs["executable_path"] = DRIVERS["chrome"]
+            from selenium.webdriver.chrome.service import Service
+
+            kwargs["service"] = Service(executable_path=DRIVERS["chrome"])
 
     options = None
     headless = kwargs.pop("headless", False)
