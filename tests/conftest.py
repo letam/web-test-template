@@ -5,7 +5,7 @@ from utils.browser import Browser
 
 @fixture
 def browser():
-    with Browser() as browser:   # default driver is firefox
+    with Browser() as browser:  # default driver is firefox
         yield browser
 
 

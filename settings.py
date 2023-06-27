@@ -1,4 +1,5 @@
 from os import getenv
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -13,4 +14,4 @@ DRIVERS = {
 WAIT_TIME = 1
 
 # poll for something at a default rate of 1/10 of a second
-POLL_FREQUENCY = 1/10
+POLL_FREQUENCY = 1 / 10

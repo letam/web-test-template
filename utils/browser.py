@@ -1,16 +1,14 @@
-from typing import Callable
 import time
+from typing import Callable
 
 from selenium import webdriver
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.common.exceptions import (
-    WebDriverException,
-    InvalidSelectorException,
-    NoSuchElementException,
-)
+from selenium.common.exceptions import (InvalidSelectorException,
+                                        NoSuchElementException,
+                                        WebDriverException)
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support.wait import WebDriverWait
 
-from settings import DRIVERS, WAIT_TIME, POLL_FREQUENCY
+from settings import DRIVERS, POLL_FREQUENCY, WAIT_TIME
 
 
 class BrowserFunctionsMixin:
@@ -67,8 +65,8 @@ class BrowserFunctionsMixin:
             return False
 
     def find_by_text(self, text: str, timeout=0, tag_name: str = '*'):
-        ''' Note: If tag name is not provided, then may not return the
-            direct element containing text. '''
+        '''Note: If tag name is not provided, then may not return the
+        direct element containing text.'''
         return self.wait_for_element_by_xpath(
             f'//{tag_name}[contains(string(), "{text}")]', timeout
         )
@@ -96,9 +94,9 @@ class BrowserFunctionsMixin:
         return self.driver.capabilities.get('browserName')
 
     def click(self, element):
-        """ Tell driver to click provided element.
-            If browser is Safari, click via javascript, since
-            `element.click()` does not seem to work on safari
+        """Tell driver to click provided element.
+        If browser is Safari, click via javascript, since
+        `element.click()` does not seem to work on safari
         """
         if self.browser_name == 'Safari':
             self.driver.execute_script('arguments[0].click()', element)
@@ -113,7 +111,7 @@ class BrowserFunctionsMixin:
         self.driver.execute_script('arguments[0].scrollIntoView()', element)
 
     def click_checkbox(self, element):
-        ''' Ensure that checkbox element appears so that we can indeeed click it. '''
+        '''Ensure that checkbox element appears so that we can indeeed click it.'''
         self.driver.execute_script(
             'arguments[0].style["-moz-appearance"] = "checkbox"', element
         )
@@ -124,7 +122,6 @@ class BrowserFunctionsMixin:
 
 
 def Browser(driver_name: str = "firefox", *args, **kwargs):
-
     if not driver_name:
         driver_name = "firefox"
 

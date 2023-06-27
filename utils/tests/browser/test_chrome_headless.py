@@ -2,7 +2,6 @@ from pytest import fixture
 
 from utils.browser import Browser
 
-
 driver_name = "chrome"
 
 
