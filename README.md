@@ -48,7 +48,9 @@ A starter project for creating automated tests for websites and web applications
 
 6. Install web drivers (Optional)
 
-   You can place binary web driver files either in `/usr/local/bin` or `./webdriver_bin`.
+   You can place [binary web driver](https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location/#download-the-driver) files either in `/usr/local/bin` or `./webdriver_bin`.
+
+   **Note**: To enable opening Chrome webdriver on macOS, refer to the [FAQ](#on-macos-i-get-a-dialog-saying--cannot-be-opened-because-it-is-from-an-unidentified-developer).
 
 7. Create env file
 
@@ -155,9 +157,19 @@ pytest tests/example/test_chrome.py -k 'fill'
 
 ## FAQ
 
-##### On macOS I get a dialog saying: "...can’t be opened because Apple cannot check it for malicious software."
+##### On macOS I get a dialog saying: "... cannot be opened because it is from an unidentified developer."
 
-You may need to explicitly open the driver one time in order to authorize its execution on your machine. You can do this by right-clicking on the binary file and selecting "Open" in the menu and then "Open" in the dialog that pops up. You can close the terminate the terminal that opens.
+You can remove the file from quarantine via terminal:
+
+```
+xattr -d com.apple.quarantine <path-of-executable>
+```
+
+e.g.
+
+```
+xattr -d com.apple.quarantine ./webdriver_bin/chromedriver-114.0.5735.90_mac_arm64
+```
 
 ##### I get an error saying: "selenium.common.exceptions.SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version ..."
 
